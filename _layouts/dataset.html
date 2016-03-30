@@ -26,16 +26,28 @@ layout: default
   There was an error saving this page
 </div>
 
+<<<<<<< HEAD
 
 {% assign org_hash = site.organizations | where: "title", organization | first %}
+=======
+{% assign organization = site.organizations | where:"title",page.publisher.name | first %}
+>>>>>>> 6449c0e09fa79885440f3c6e9758a0267ac047bc
 <div class="row" data-hook="read-view">
   {% if org_hash %}
   <div class="col-sm-3">
+<<<<<<< HEAD
     {% if org_hash.logo %}
       <a href="{{ site.baseurl }}/datasets/?organization={{ org_hash.title | slugify }}" class="thumbnail"><img src="{{ org_hash.logo }}" alt="{{ org_hash.title }} logo"></a>
     {% endif %}
     <h3><a href="{{ site.baseurl }}/datasets/?organization={{ org_hash.title | slugify }}">{{ org_hash.title }}</a></h3>
     <p>{{ org_hash.description }}</p>
+=======
+    {% if organization.logo %}
+      <a href="{{ site.baseurl }}/datasets/?organization={{ organization.name | slugify }}" class="thumbnail"><img src="{{ organization.logo }}" alt="{{ organization.name }} logo"></a>
+    {% endif %}
+    <h3><a href="{{ site.baseurl }}/datasets/?organization={{ organization.name | slugify }}">{{ organization.name }}</a></h3>
+    <p>{{ organization.description }}</p>
+>>>>>>> 6449c0e09fa79885440f3c6e9758a0267ac047bc
   </div>
   <div class="col-sm-9">
   {% else %}
@@ -45,15 +57,19 @@ layout: default
       {{ title }}
       <a href="https://github.com/{{ site.github.owner_name }}/{{ site.github.project_title }}/edit/gh-pages/{{ page.path }}" class="pull-right btn btn-default" role="button" data-hook="edit-button">Edit</a>
     </h1>
+<<<<<<< HEAD
     <p>{{ notes }}</p>
+=======
+    <p>{{ page.description }}</p>
+>>>>>>> 6449c0e09fa79885440f3c6e9758a0267ac047bc
 
     <h2>Resources</h2>
     <ul>
-      {% for resource in page.resources %}
+      {% for distribution in page.distribution %}
       <li>
-        <a href="{{ resource.url }}">{{ resource.name }}</a>
-        {% if resource.format %}({{ resource.format}}){% endif %}
-        {% if resource.description %}<div class="resource-description">{{ resource.description }}</div>{% endif %}
+        <a href="{{ distribution.downloadURL }}">{{ distribution.title }}</a>
+        {% if distribution.format %}({{ distribution.format}}){% endif %}
+        {% if distribution.description %}<div class="resource-description">{{ distribution.description }}</div>{% endif %}
       </li>
       {% endfor %}
     </ul>
@@ -61,6 +77,7 @@ layout: default
     <h2>Additional Info</h2>
     <dl>
 
+<<<<<<< HEAD
       {% for field in fields %}
         {% unless special_fields contains field.system_field %}
           {% include functions/deep-value.html object=page field_name=field.field_name %}
@@ -73,6 +90,17 @@ layout: default
         {% endunless %}
       {% endfor %}
 
+=======
+      {% if page.contactPoint.fn != "" %}
+      <dt>Maintainer</dt>
+      <dd>{{ page.contactPoint.fn }}</dd>
+      {% endif %}
+      
+      {% if page.contactPoint.hasEmail != "" %}
+      <dt>Maintainer Email</dt>
+      <dd>{{ page.contactPoint.hasEmail }}</dd>
+      {% endif %}
+>>>>>>> 6449c0e09fa79885440f3c6e9758a0267ac047bc
     </dl>
   </div>
 </div>
