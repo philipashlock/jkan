@@ -1,0 +1,39 @@
+
+    <h3>
+        {{ site.data.bootstrap.label_default }}
+            {{ page.number }}
+        {{ site.data.bootstrap.label_end }}
+        &nbsp; {{ page.title }}
+    </h3>
+
+    {% for item in page.items %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{ item.item }}</h3><br>
+        <div class="progress">
+
+          {% assign issues_total = item.done | plus:item.doing | plus:item.todo | round: 1 %}
+
+          {% assign done_percent = item.done | divided_by:issues_total | times:100 %}
+          {% assign doing_percent = item.doing | divided_by:issues_total | times:100 %}
+          {% assign todo_percent = item.todo | divided_by:issues_total | times:100 %}
+
+          {{ site.data.bootstrap.progress_done }}{{ done_percent }}{{ site.data.bootstrap.progress_end}}
+          {{ site.data.bootstrap.progress_doing }}{{ doing_percent}}{{ site.data.bootstrap.progress_end }}
+          {{ site.data.bootstrap.progress_todo }}{{ todo_percent }}{{ site.data.bootstrap.progress_end }}
+        </div>
+
+        {% for issue in item.issues %}
+        {% if issue.issue == 'info' %}<p>{{ site.data.bootstrap.alert_info }}<a href="{{ issue.url }}" target="_blank">{% if issue.text %}{{ issue.text }}{% else %}{{ issue.url }}{% endif %}</a>{{ site.data.bootstrap.alert_end }}</p>{% endif %}
+        {% if issue.issue == 'todo' %}<p>{{ site.data.bootstrap.alert_todo }}<a href="{{ issue.url }}" target="_blank">{% if issue.text %}{{ issue.text }}{% else %}{{ issue.url }}{% endif %}</a>{{ site.data.bootstrap.alert_end }}</p>{% endif %}
+        {% if issue.issue == 'doing' %}<p>{{ site.data.bootstrap.alert_doing }}<a href="{{ issue.url }}" target="_blank">{% if issue.text %}{{ issue.text }}{% else %}{{ issue.url }}{% endif %}</a>{{ site.data.bootstrap.alert_end }}</p>{% endif %}
+        {% if issue.issue == 'done' %}<p>{{ site.data.bootstrap.alert_done }}<a href="{{ issue.url }}" target="_blank">{% if issue.text %}{{ issue.text }}{% else %}{{ issue.url }}{% endif %}</a>{{ site.data.alert_end }}</p>{% endif %}
+        {% endfor %}
+      </div>
+      {% endfor %}
+      <div class="panel-body">
+        <a class="btn btn-danger pull-right" href="{{ site.github.repository_url }}/edit/{{ site.branch }}/{{ page.path }}">Edit</a>
+        <p>{{ control.content }}</p>
+
+      </div>
+    </div>
