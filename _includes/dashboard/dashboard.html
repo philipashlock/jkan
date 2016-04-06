@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 {% if page.goal %}
-    {% for item in site.data.tabs %}
+    {% for item in site.data.dashboard.goals %}
          {% if item.goal == page.goal %}
             <a class="sidebar-panel-heading" href="./{{ item.goal }}">
                 <div class="panel-heading">
@@ -13,14 +13,14 @@
     {% endfor %}
 
     <div class="list-group">
-    {% for control in site.controls %}
-        {% if control.goal == page.goal %}
+    {% for indicator in site.indicators %}
+        {% if indicator.goal == page.goal %}
             {% assign selected = "" %}
-            {% if control.number %}
-                {% if control.number == page.number %}
+            {% if indicator.number %}
+                {% if indicator.number == page.number %}
                     {% assign selected = "active" %}
                 {% endif %}
-                <a class="list-group-item {{ selected }}" href=".{{ control.permalink }}">{{ control.number }}</a>
+                <a class="list-group-item {{ selected }}" href=".{{ indicator.permalink }}">{{ indicator.number }}</a>
             {% endif %}
         {% endif %}
     {% endfor %}
@@ -31,7 +31,7 @@
     <div class="list-group">
 
 
-{% for item in site.data.tabs %}
+{% for item in site.data.dashboard.goals %}
 
     {% assign todos = 0 %}
     {% assign doings = 0 %}
@@ -45,9 +45,9 @@
 
     {% if item.grouping == 'datagov' %}
 
-        {% for control in site.controls %}
-            {% if control.goal == item.goal %}
-                {% for item in control.items %}
+        {% for indicator in site.indicators %}
+            {% if indicator.goal == item.goal %}
+                {% for item in indicator.items %}
                     {% assign items = items | plus:1 %}
                     {% assign todos = todos | plus:item.todo %}
                     {% assign doings = doings | plus:item.doing %}

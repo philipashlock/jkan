@@ -40,8 +40,13 @@ collections:
   datasets:
     output: true
     permalink: /datasets/:path/
+    layout: dataset
   organizations:
     output: false
+  indicators:
+    output: true
+    layout: dashboard
+    permalink: /indicators/:path/
 
 # Collections (cont'd)
 defaults:
@@ -49,7 +54,6 @@ defaults:
       path: ""
       type: datasets
     values:
-      layout: dataset
       category: Uncategorized
       organization: N/A
 
