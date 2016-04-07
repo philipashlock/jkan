@@ -5,7 +5,7 @@
             <a class="sidebar-panel-heading" href="./{{ item.goal }}">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        {{ item.goal }} - {{ item.name }}
+                        {{ item.goal }} - {{ item.title }}
                     </h3>
                 </div>
             </a>
@@ -13,14 +13,14 @@
     {% endfor %}
 
     <div class="list-group">
-    {% for control in site.controls %}
-        {% if control.goal == page.goal %}
+    {% for indicator in site.indicators %}
+        {% if indicator.goal == page.goal %}
             {% assign selected = "" %}
-            {% if control.number %}
-                {% if control.number == page.number %}
+            {% if indicator.subgoal %}
+                {% if indicator.subgoal == page.subgoal %}
                     {% assign selected = "active" %}
                 {% endif %}
-                <a class="list-group-item {{ selected }}" href=".{{ control.permalink }}">{{ control.number }}</a>
+                <a class="list-group-item {{ selected }}" href=".{{ indicator.goal }}">{{ indicator.subgoal }}</a>
             {% endif %}
         {% endif %}
     {% endfor %}
@@ -43,18 +43,15 @@
     {% assign doings_percent = 0 %}
     {% assign dones_percent = 0 %}
 
-    {% if item.grouping == 'datagov' %}
-
-        {% for control in site.controls %}
-            {% if control.goal == item.goal %}
-                {% for item in control.items %}
-                    {% assign items = items | plus:1 %}
-                    {% assign todos = todos | plus:item.todo %}
-                    {% assign doings = doings | plus:item.doing %}
-                    {% assign dones = dones | plus:item.done %}
+        {% for indicator in site.indicators %}
+            {% if indicator.goal == item.goal %}
+                {% for dataset in indicator.datasets %}
+                    {% assign datasets = datasets | plus:1 %}
+                    {% assign todos = todos | plus:dataset.todo %}
+                    {% assign doings = doings | plus:dataset.doing %}
+                    {% assign dones = dones | plus:dataset.done %}
                 {% endfor %}
             {% endif %}
-
         {% endfor %}
 
         {% assign issues_total = todos | plus:doings | plus:dones | round: 1 %}
@@ -64,9 +61,9 @@
         {% assign dones_percent = dones | divided_by:issues_total | times:100 %}
 
 
-        <a class="list-group-item" href="./{{ item.goal }}">
+        <a class="list-group-item" href="./{{ item.goal }}.html">
             <span class="badge">{{ items }}</span>
-            {{ item.goal }} - {{ item.name }}
+            {{ site.data.bootstrap.label_primary }}{{ item.goal }}{{ site.data.bootstrap.label_end }} {{ item.title }}
 
             <div class="progress">
               {{ site.data.bootstrap.progress_done }}{{ dones_percent }}{{ site.data.bootstrap.progress_end}}
@@ -76,16 +73,9 @@
 
         </a>
 
-    {% else %}
-        <a class="list-group-item disabled">{{ item.goal }} - {{ item.name }}</a>
-    {% endif %}
-
-
 {% endfor %}
 
-
     </div>
-
 
 {% endif %}
 </div>

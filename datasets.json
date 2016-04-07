@@ -1,5 +1,3 @@
----
----
 [{% for dataset in site.datasets %}
   {
     "title": {{ dataset.title | jsonify }},

@@ -5,22 +5,7 @@ permalink: /datasets/
 ---
 {% include breadcrumbs.html %}
 
-<div class="row">
-  <div class="col-sm-4">
-
-    <h3>Categories</h3>
-    <div class="list-group" data-hook="categories-items" data-show="5"></div>
-
-    <h3>Organizations</h3>
-    <div class="list-group" data-hook="organizations-items" data-show="15"></div>
-  </div>
-  <div class="col-sm-8">
-    <h3 class="datasets-count" data-hook="datasets-count"></h3>
-    <a href="{{ site.baseurl }}/add-dataset/" class="btn btn-default pull-right add-dataset-btn" data-hook="add-dataset-btn"><i class="fa fa-plus"></i> Add Dataset</a>
-    <input type="text" data-hook="search-query" placeholder="Search..." class="form-control">
-    <div data-hook="datasets-items"></div>
-  </div>
-</div>
+{% include sidebar.html %}
 
 <script type="text/template" data-hook="tmpl-list-group-item">
   <a href="<%= data.url %>" class="list-group-item<% if (data.selected) { %> active <% } %>">
@@ -29,7 +14,7 @@ permalink: /datasets/
     <% if (data.selected) { %><span class="badge"><i class="fa fa-times"></i></span><% } %>
   </a>
 </script>
-  
+
 <script type="text/template" data-hook="tmpl-dataset-item">
   <dataset>
     <h3><a href="<%= data.url %>"><%= data.title %></a></h3>

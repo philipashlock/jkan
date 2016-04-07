@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+<div class="col-sm-12 col-md-3 sidebar">
+  {% include dashboard/sidebar.html %}
+</div>
+<div class="col-sm-12 col-md-9 main">
+  {% if page.goal %}
+  {% include dashboard/indicator.html %}
+  {% endif %}
+
+  {{ content }}
+</div>

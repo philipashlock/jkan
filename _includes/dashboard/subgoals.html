@@ -1,0 +1,37 @@
+{% for indicator in site.indicators %}
+    {% if indicator.goal == page.goal %}
+        {% if indicator.subgoal %}
+            <h3>
+                <a href=".{{ indicator.goal }}-{{ indicator.subgoal }}-{{ indicator.indicator }}">
+                {{ site.data.alerts.label_default }}
+                    {{ indicator.subgoal }}
+                {{ site.data.alerts.label_end }}
+                </a>
+                &nbsp; {{ indicator.title }}
+            </h3>
+
+            {% for dataset in indicator.datasets %}
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">{{ dataset.dataset }}</h3><br>
+                    <div class="progress">
+                      {{ site.data.alerts.progress_done }}{{ dataset.done }}{{ site.data.alerts.progress_end}}
+                      {{ site.data.alerts.progress_doing }}{{ dataset.doing }}{{ site.data.alerts.progress_end }}
+                      {{ site.data.alerts.progress_todo }}{{ dataset.todo }}{{ site.data.alerts.progress_end }}
+                    </div>
+
+                    {% for issue in dataset.issues %}
+                    {% if issue.issue == 'info' %}<p>{{ site.data.alerts.alert_info }}<a href="{{ issue.url }}" target="_blank">{% if issue.text %}{{ issue.text }}{% else %}{{ issue.url }}{% endif %}</a>{{ site.data.alerts.alert_end }}</p>{% endif %}
+                    {% if issue.issue == 'todo' %}<p>{{ site.data.alerts.alert_todo }}<a href="{{ issue.url }}" target="_blank">{% if issue.text %}{{ issue.text }}{% else %}{{ issue.url }}{% endif %}</a>{{ site.data.alerts.alert_end }}</p>{% endif %}
+                    {% if issue.issue == 'doing' %}<p>{{ site.data.alerts.alert_doing }}<a href="{{ issue.url }}" target="_blank">{% if issue.text %}{{ issue.text }}{% else %}{{ issue.url }}{% endif %}</a>{{ site.data.alerts.alert_end }}</p>{% endif %}
+                    {% if issue.issue == 'done' %}<p>{{ site.data.alerts.alert_done }}<a href="{{ issue.url }}" target="_blank">{% if issue.text %}{{ issue.text }}{% else %}{{ issue.url }}{% endif %}</a>{{ site.data.alert_end }}</p>{% endif %}
+                    {% endfor %}
+                  </div>
+                  <div class="panel-body">
+                    <a class="btn btn-primary pull-right" href=".{{ indicator.goal }}-{{ indicator.subgoal }}-{{ indicator.indicator }}">Read</a>
+                  </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
