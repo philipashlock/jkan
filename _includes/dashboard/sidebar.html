@@ -61,7 +61,7 @@
         {% assign dones_percent = dones | divided_by:issues_total | times:100 %}
 
 
-        <a class="list-group-item" href="./{{ item.goal }}.html">
+        <a class="list-group-item" href="./{{ item.goal }}">
             <span class="badge">{{ items }}</span>
             {{ site.data.bootstrap.label_primary }}{{ item.goal }}{{ site.data.bootstrap.label_end }} {{ item.title }}
 

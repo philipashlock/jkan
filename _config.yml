@@ -8,45 +8,50 @@ github_client_id:
 gatekeeper_host:
 
 # Dataset schema
-schema: default
+schema: datajson
 
 # Categories
 category_list:
-  - Arts / Culture / History
-  - Budget / Finance
-  - Economy
+  - Poverty
+  - Hunger
+  - Health
   - Education
-  - Elections / Politics
-  - Environment
-  - Food
-  - Health / Human Services
-  - Parks / Recreation
-  - Planning / Zoning
-  - Public Safety
-  - Real Estate / Land Records
-  - Transportation
-  - Uncategorized
+  - Equality
+  - Water
+  - Energy
+  - Economy
+  - Infrastructure
+  - Inequality
+  - Settlements
+  - Consumption
+  - Climate Change
+  - Oceans
+  - Ecosystems
+  - Society
+  - Partnerships
 
 # Link for the "fork me on github" banner. Remove this line to suppress banner.
-fork_me_url: https://github.com/timwis/jkan
+fork_me_url: https://github.com/jjediny/jkan
 
 # Nav bar
 navigation:
   - title: Datasets
     url: /datasets/
+  - title: Dashboard
+    url: /dashboard/
 
 # Collections
 collections:
-  datasets:
-    output: true
-    permalink: /datasets/:path/
-    layout: dataset
-  organizations:
-    output: false
-  indicators:
-    output: true
-    layout: dashboard
-    permalink: /indicators/:path/
+  - datasets:
+      output: true
+      permalink: /datasets/:path/
+      layout: dataset
+  - organizations:
+      output: false
+  - indicators:
+      output: true
+      layout: dashboard
+      permalink: /dashboard/:path/
 
 # Collections (cont'd)
 defaults:
