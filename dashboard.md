@@ -1,7 +1,7 @@
 ---
 title: Dashboard
 layout: dashboard
-permalink: /dashboard
+permalink: /dashboard/
 ---
 ## Welcome to JKAN's Data Quality Dashboard
 

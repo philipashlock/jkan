@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+{% include breadcrumbs.html %}
 <div class="col-sm-12 col-md-3 sidebar">
   {% include dashboard/sidebar.html %}
 </div>
@@ -60,7 +61,6 @@ layout: default
       {{ site.data.bootstrap.label_danger }}
       Todo <span class="badge">{{ todos }}</span>
       {{ site.data.bootstrap.label_end }}
-
 
       {% include dashboard/subgoals.html %}
 
