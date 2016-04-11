@@ -2,7 +2,7 @@
 {% if page.goal %}
     {% for item in site.data.dashboard.goals %}
          {% if item.goal == page.goal %}
-            <a class="sidebar-panel-heading" href="./{{ item.goal }}">
+            <a class="sidebar-panel-heading" href="/{{ item.short }}">
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         {{ item.goal }} - {{ item.name }}
@@ -16,11 +16,11 @@
     {% for indicator in site.indicators %}
         {% if indicator.goal == page.goal %}
             {% assign selected = "" %}
-            {% if indicator.number %}
-                {% if indicator.number == page.number %}
+            {% if indicator.goal %}
+                {% if indicator.goal == page.goal %}
                     {% assign selected = "active" %}
                 {% endif %}
-                <a class="list-group-item {{ selected }}" href=".{{ indicator.goal }}-{{ indicator.subgoal }}-{{ indicator.indicator }}">{{ indicator.number }}</a>
+                <a class="list-group-item {{ selected }}" href="/{{ indicator.goal }}-{{ indicator.subgoal }}-{{ indicator.indicator }}">{{ indicator.indicator }}</a>
             {% endif %}
         {% endif %}
     {% endfor %}

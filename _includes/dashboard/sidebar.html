@@ -1,30 +1,33 @@
-<div class="panel panel-default">
-{% if page.goal %}
-    {% for item in site.data.dashboard.goals %}
-         {% if item.goal == page.goal %}
-            <a class="sidebar-panel-heading" href="./{{ item.goal }}">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        {{ item.goal }} - {{ item.title }}
-                    </h3>
-                </div>
-            </a>
-        {% endif %}
-    {% endfor %}
 
-    <div class="list-group">
-    {% for indicator in site.indicators %}
-        {% if indicator.goal == page.goal %}
-            {% assign selected = "" %}
-            {% if indicator.subgoal %}
-                {% if indicator.subgoal == page.subgoal %}
-                    {% assign selected = "active" %}
-                {% endif %}
-                <a class="list-group-item {{ selected }}" href=".{{ indicator.goal }}">{{ indicator.subgoal }}</a>
+  <div class="panel panel-default">
+  {% if page.goal %}
+      {% for item in site.data.dashboard.goals %}
+           {% if item.goal == page.goal %}
+              <div class="sidebar-panel-heading">
+                  <div class="panel-heading" data-toggle="tab" id="top">
+                      <h3 class="panel-title">
+                          <span class="badge">Goal {{ page.goal }}</span> {{ item.title }}
+                      </h3>
+                  </div>
+              </div>
+          {% endif %}
+      {% endfor %}
+
+      <div class="panel-body nav affix">
+        <ul class="nav nav-tabs nav-stacked">
+          <li class="nav-item">
+            <a class="nav-link" href="#top">Return to <span class="badge">Goal {{ page.goal }}</span></a>
+          </li>
+          {% for indicator in site.indicators %}
+            {% if indicator.id != page.id %}
+            <li class="nav-item">
+              <a class="nav-link" href="#{{ indicator.goal }}-{{ indicator.subgoal }}-{{ indicator.indicator }}">Subgoal <b>{{ indicator.subgoal }}</b> Indicator <b>{{ indicator.indicator }}</b></a>
+            </li>
             {% endif %}
-        {% endif %}
-    {% endfor %}
-    </div>
+          {% endfor %}
+        </ul>
+      </div>
+  </div>
 
 {% else %}
 
@@ -61,7 +64,7 @@
         {% assign dones_percent = dones | divided_by:issues_total | times:100 %}
 
 
-        <a class="list-group-item" href="./{{ item.goal }}">
+        <a class="list-group-item" href="{{ item.goal }}_{{ item.short }}">
             <span class="badge">{{ items }}</span>
             {{ site.data.bootstrap.label_primary }}{{ item.goal }}{{ site.data.bootstrap.label_end }} {{ item.title }}
 

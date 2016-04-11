@@ -1,6 +1,6 @@
 ---
 layout: goal
-goal: 1
+goal: 2
 title: Poverty
 ---
 Custom intro or description for this goal goes here

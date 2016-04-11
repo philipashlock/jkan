@@ -1,37 +1,37 @@
 {% for indicator in site.indicators %}
     {% if indicator.goal == page.goal %}
         {% if indicator.subgoal %}
-            <h3>
-                <a href=".{{ indicator.goal }}-{{ indicator.subgoal }}-{{ indicator.indicator }}">
-                {{ site.data.bootstrap.label_default }}
-                    {{ indicator.subgoal }}
-                {{ site.data.bootstrap.label_end }}
-                </a>
-                &nbsp; {{ indicator.title }}
-            </h3>
-
+          <h3>
+          {{ site.data.bootstrap.label_primary }}
+              Subgoal {{ indicator.subgoal }} Indicator {{ indicator.indicator }}
+          {{ site.data.bootstrap.label_end }}
+        </h3>
+          <div class="panel panel-default" data-toggle="tab" id="{{ indicator.goal }}-{{ indicator.subgoal }}-{{ indicator.indicator }}">
+            <div class="panel-heading">
+                <h3>
+                {{ indicator.title }}
+                </h3>
             {% for dataset in indicator.datasets %}
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">{{ dataset.dataset }}</h3><br>
-                    <div class="progress">
-                      {{ site.data.bootstrap.progress_done }}{{ dataset.done }}{{ site.data.bootstrap.progress_end}}
-                      {{ site.data.bootstrap.progress_doing }}{{ dataset.doing }}{{ site.data.bootstrap.progress_end }}
-                      {{ site.data.bootstrap.progress_todo }}{{ dataset.todo }}{{ site.data.bootstrap.progress_end }}
-                    </div>
+              <h3 class="panel-title pull-right">{{ dataset.dataset }}</h3><br>
+              <div class="progress">
+                {{ site.data.bootstrap.progress_done }}{{ dataset.done }}{{ site.data.bootstrap.progress_end}}
+                {{ site.data.bootstrap.progress_doing }}{{ dataset.doing }}{{ site.data.bootstrap.progress_end }}
+                {{ site.data.bootstrap.progress_todo }}{{ dataset.todo }}{{ site.data.bootstrap.progress_end }}
+              </div>
 
-                    {% for issue in dataset.issues %}
-                    {% if issue.issue == 'info' %}<p>{{ site.data.bootstrap.alert_info }}<a href="{{ issue.url }}" target="_blank">{% if issue.text %}{{ issue.text }}{% else %}{{ issue.url }}{% endif %}</a>{{ site.data.bootstrap.alert_end }}</p>{% endif %}
-                    {% if issue.issue == 'todo' %}<p>{{ site.data.bootstrap.alert_todo }}<a href="{{ issue.url }}" target="_blank">{% if issue.text %}{{ issue.text }}{% else %}{{ issue.url }}{% endif %}</a>{{ site.data.bootstrap.alert_end }}</p>{% endif %}
-                    {% if issue.issue == 'doing' %}<p>{{ site.data.bootstrap.alert_doing }}<a href="{{ issue.url }}" target="_blank">{% if issue.text %}{{ issue.text }}{% else %}{{ issue.url }}{% endif %}</a>{{ site.data.bootstrap.alert_end }}</p>{% endif %}
-                    {% if issue.issue == 'done' %}<p>{{ site.data.bootstrap.alert_done }}<a href="{{ issue.url }}" target="_blank">{% if issue.text %}{{ issue.text }}{% else %}{{ issue.url }}{% endif %}</a>{{ site.data.alert_end }}</p>{% endif %}
-                    {% endfor %}
-                  </div>
-                  <div class="panel-body">
-                    <a class="btn btn-primary pull-right" href=".{{ indicator.goal }}-{{ indicator.subgoal }}-{{ indicator.indicator }}">Read</a>
-                  </div>
-                </div>
+              {% for issue in dataset.issues %}
+              {% if issue.issue == 'info' %}<p>{{ site.data.bootstrap.alert_info }}<a href="{{ issue.url }}" target="_blank">{% if issue.text %}{{ issue.text }}{% else %}{{ issue.url }}{% endif %}</a>{{ site.data.bootstrap.alert_end }}</p>{% endif %}
+              {% if issue.issue == 'todo' %}<p>{{ site.data.bootstrap.alert_todo }}<a href="{{ issue.url }}" target="_blank">{% if issue.text %}{{ issue.text }}{% else %}{{ issue.url }}{% endif %}</a>{{ site.data.bootstrap.alert_end }}</p>{% endif %}
+              {% if issue.issue == 'doing' %}<p>{{ site.data.bootstrap.alert_doing }}<a href="{{ issue.url }}" target="_blank">{% if issue.text %}{{ issue.text }}{% else %}{{ issue.url }}{% endif %}</a>{{ site.data.bootstrap.alert_end }}</p>{% endif %}
+              {% if issue.issue == 'done' %}<p>{{ site.data.bootstrap.alert_done }}<a href="{{ issue.url }}" target="_blank">{% if issue.text %}{{ issue.text }}{% else %}{{ issue.url }}{% endif %}</a>{{ site.data.bootstrap.alert_end }}</p>{% endif %}
+              {% endfor %}
             {% endfor %}
+            </div>
+            <div class="panel-body">
+              <a class="btn btn-default pull-right" href="{{ site.github.repository_url }}/edit/{{ site.branch }}/{{ page.path }}">Edit</a>
+              {{ indicator.content | markdownify }}
+            </div>
+          </div>
         {% endif %}
     {% endif %}
 {% endfor %}
