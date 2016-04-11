@@ -50,11 +50,11 @@ layout: default
         {{ site.data.bootstrap.progress_todo }}{{ todos_percent }}{{ site.data.bootstrap.progress_end }}
       </div>
 
-      <h4>
+      <h2>
         {{ site.data.bootstrap.label_done }}Done <span class="badge">{{ todos_percent }} %</span>{{ site.data.bootstrap.label_end }}
         {{ site.data.bootstrap.label_doing }}Doing <span class="badge">{{ doings_percent }} %</span>{{ site.data.bootstrap.label_end }}
         {{ site.data.bootstrap.label_todo }}Todo <span class="badge">{{ dones_percent }} %</span>{{ site.data.bootstrap.label_end }}
-      </h4>
+      </h2>
 
       {% include dashboard/subgoals.html %}
 

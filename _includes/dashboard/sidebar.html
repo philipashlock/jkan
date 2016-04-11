@@ -1,5 +1,5 @@
-
-  <div class="panel panel-default">
+<body data-spy="scroll" data-target="#scrollbar" data-offset="15">
+  <nav class="panel panel-default" id="scrollbar">
   {% if page.goal %}
       {% for item in site.data.dashboard.goals %}
            {% if item.goal == page.goal %}
@@ -13,22 +13,22 @@
           {% endif %}
       {% endfor %}
 
-      <div class="panel-body nav affix">
-        <ul class="nav nav-tabs nav-stacked">
-          <li class="nav-item">
-            <a class="nav-link" href="#top">Return to <span class="badge">Goal {{ page.goal }}</span></a>
-          </li>
-          {% for indicator in site.indicators %}
-            {% if indicator.id != page.id %}
+      <div class="panel-body">
+          <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
             <li class="nav-item">
-              <a class="nav-link" href="#{{ indicator.goal }}-{{ indicator.subgoal }}-{{ indicator.indicator }}">Subgoal <b>{{ indicator.subgoal }}</b> Indicator <b>{{ indicator.indicator }}</b></a>
+              <a class="nav-link" href="#top">Return to <span class="badge">Goal {{ page.goal }}</span></a>
             </li>
-            {% endif %}
-          {% endfor %}
-        </ul>
+            {% for indicator in site.indicators %}
+              {% if indicator.id != page.id %}
+              <li class="nav-item">
+                <a class="nav-link" href="#{{ indicator.goal }}-{{ indicator.subgoal }}-{{ indicator.indicator }}">Subgoal <b>{{ indicator.subgoal }}</b> Indicator <b>{{ indicator.indicator }}</b></a>
+              </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
       </div>
-  </div>
-
+  </nav>
+</body>
 {% else %}
 
     <div class="list-group">

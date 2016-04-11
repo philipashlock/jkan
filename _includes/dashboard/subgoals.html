@@ -2,15 +2,15 @@
     {% if indicator.goal == page.goal %}
         {% if indicator.subgoal %}
           <h3>
-          {{ site.data.bootstrap.label_primary }}
+          {{ site.data.bootstrap.label_default }}
               Subgoal {{ indicator.subgoal }} Indicator {{ indicator.indicator }}
           {{ site.data.bootstrap.label_end }}
         </h3>
           <div class="panel panel-default" data-toggle="tab" id="{{ indicator.goal }}-{{ indicator.subgoal }}-{{ indicator.indicator }}">
             <div class="panel-heading">
-                <h3>
+                <h4>
                 {{ indicator.title }}
-                </h3>
+              </h4>
             {% for dataset in indicator.datasets %}
               <h3 class="panel-title pull-right">{{ dataset.dataset }}</h3><br>
               <div class="progress">
