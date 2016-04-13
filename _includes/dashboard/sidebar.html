@@ -11,14 +11,14 @@
           {% endif %}
       {% endfor %}
 
-      <ul class="nav nav-pills nav-stacked affix" data-spy="affix" data-offset-top="205">
+      <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
         <li class="nav-item">
           <a class="nav-link" href="#top">Return to top...</a>
         </li>
         {% for indicator in site.indicators %}
           {% if indicator.id != page.id %}
           <li class="nav-item">
-            <a class="nav-link" href="#{{ indicator.goal }}-{{ indicator.subgoal }}-{{ indicator.indicator }}">Subgoal <b>{{ indicator.subgoal }}</b> Indicator <b>{{ indicator.indicator }}</b></a>
+            <a class="nav-link" href="#{{ indicator.goal }}-{{ indicator.subgoal }}-{{ indicator.indicator }}">{{ site.data.bootstrap.label_primary }}Subgoal <b>{{ indicator.subgoal }}</b>{{ site.data.bootstrap.label_end }}{{ site.data.bootstrap.label_default }}Indicator <b>{{ indicator.indicator }}</b>{{ site.data.bootstrap.label_end }}</a>
           </li>
           {% endif %}
         {% endfor %}
