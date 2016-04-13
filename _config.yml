@@ -50,7 +50,9 @@ collections:
     permalink: /datasets/:path/
     layout: dataset
   organizations:
+    output: true
     permalink: /organizations/:path/
+    layout: organization
   indicators:
     output: true
     permalink: /dashboard/:path/
