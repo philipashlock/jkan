@@ -22,6 +22,7 @@ label_doing: '<span class="label label-warning">'
 label_done: '<span class="label label-success">'
 label_default: '<span class="label label-default">'
 label_primary: '<span class="label label-primary">'
+label_primary_pullright: '<span class="label label-primary pull-right">'
 label_end: '</span>'
 
 hr_faded: '<hr class="faded"/>'

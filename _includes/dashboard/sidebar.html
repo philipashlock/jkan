@@ -1,32 +1,28 @@
 <body data-spy="scroll" data-target="#scrollbar" data-offset="15">
   <nav class="panel panel-default" id="scrollbar">
-  {% if page.goal %}
+      {% if page.goal %}
       {% for item in site.data.dashboard.goals %}
            {% if item.goal == page.goal %}
-              <div class="sidebar-panel-heading">
                   <div class="panel-heading" data-toggle="tab" id="top">
                       <h3 class="panel-title">
-                          <span class="badge">Goal {{ page.goal }}</span> {{ item.title }}
+                          <span class="badge">Goal {{ page.goal }}</span>
                       </h3>
                   </div>
-              </div>
           {% endif %}
       {% endfor %}
 
-      <div class="panel-body">
-          <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
-            <li class="nav-item">
-              <a class="nav-link" href="#top">Return to <span class="badge">Goal {{ page.goal }}</span></a>
-            </li>
-            {% for indicator in site.indicators %}
-              {% if indicator.id != page.id %}
-              <li class="nav-item">
-                <a class="nav-link" href="#{{ indicator.goal }}-{{ indicator.subgoal }}-{{ indicator.indicator }}">Subgoal <b>{{ indicator.subgoal }}</b> Indicator <b>{{ indicator.indicator }}</b></a>
-              </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-      </div>
+      <ul class="nav nav-pills nav-stacked affix" data-spy="affix" data-offset-top="205">
+        <li class="nav-item">
+          <a class="nav-link" href="#top">Return to top...</a>
+        </li>
+        {% for indicator in site.indicators %}
+          {% if indicator.id != page.id %}
+          <li class="nav-item">
+            <a class="nav-link" href="#{{ indicator.goal }}-{{ indicator.subgoal }}-{{ indicator.indicator }}">Subgoal <b>{{ indicator.subgoal }}</b> Indicator <b>{{ indicator.indicator }}</b></a>
+          </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
   </nav>
 </body>
 {% else %}
@@ -39,7 +35,7 @@
     {% assign todos = 0 %}
     {% assign doings = 0 %}
     {% assign dones = 0 %}
-    {% assign items = 0 %}
+    {% assign datasets = 0 %}
 
     {% assign issues_total = 0 %}
     {% assign todos_percent = 0 %}
@@ -65,9 +61,10 @@
 
 
         <a class="list-group-item" href="{{ item.goal }}_{{ item.short }}">
-            <span class="badge">{{ items }}</span>
-            {{ site.data.bootstrap.label_primary }}{{ item.goal }}{{ site.data.bootstrap.label_end }} {{ item.title }}
-
+            <span class="badge">{{ datasets }}</span>
+            {{ site.data.bootstrap.label_primary }}Goal {{ item.goal }}{{ site.data.bootstrap.label_end }}
+            {{ site.data.bootstrap.label_default }}{{ item.short }}{{ site.data.bootstrap.label_end }}
+            <p>{{ item.title }}</p>
             <div class="progress">
               {{ site.data.bootstrap.progress_done }}{{ dones_percent }}{{ site.data.bootstrap.progress_end}}
               {{ site.data.bootstrap.progress_doing }}{{ doings_percent }}{{ site.data.bootstrap.progress_end }}

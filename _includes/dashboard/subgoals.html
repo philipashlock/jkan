@@ -1,18 +1,14 @@
 {% for indicator in site.indicators %}
     {% if indicator.goal == page.goal %}
         {% if indicator.subgoal %}
-          <h3>
-          {{ site.data.bootstrap.label_default }}
-              Subgoal {{ indicator.subgoal }} Indicator {{ indicator.indicator }}
-          {{ site.data.bootstrap.label_end }}
-        </h3>
           <div class="panel panel-default" data-toggle="tab" id="{{ indicator.goal }}-{{ indicator.subgoal }}-{{ indicator.indicator }}">
             <div class="panel-heading">
-                <h4>
-                {{ indicator.title }}
-              </h4>
+            <h4>
+              {{ site.data.bootstrap.label_primary_pullright }}Subgoal {{ indicator.subgoal }} Indicator {{ indicator.indicator }}{{ site.data.bootstrap.label_end }}
+            </h4>
+            <h3>{{ indicator.title }}</h3>
             {% for dataset in indicator.datasets %}
-              <h3 class="panel-title pull-right">{{ dataset.dataset }}</h3><br>
+              <a class="btn btn-default" href="{{ dataset.uri }}">{{ dataset.dataset }}</a><br>
               <div class="progress">
                 {{ site.data.bootstrap.progress_done }}{{ dataset.done }}{{ site.data.bootstrap.progress_end}}
                 {{ site.data.bootstrap.progress_doing }}{{ dataset.doing }}{{ site.data.bootstrap.progress_end }}
@@ -28,7 +24,7 @@
             {% endfor %}
             </div>
             <div class="panel-body">
-              <a class="btn btn-default pull-right" href="{{ site.github.repository_url }}/edit/{{ site.branch }}/{{ page.path }}">Edit</a>
+              <a class="btn btn-danger pull-right" href="{{ site.github.repository_url }}/edit/{{ site.branch }}/{{ page.path }}">Edit</a>
               {{ indicator.content | markdownify }}
             </div>
           </div>

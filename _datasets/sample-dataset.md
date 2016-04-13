@@ -15,7 +15,7 @@ resources:
     name: Air Monitoring Stations GeoService
     format: api
     description: Esri Geoservice to interact programmatically with the data
-category: Education
+category: Poverty
 maintainer: Tim Wisniewski
 maintainer_email: tim@timwis.com
 ---

@@ -47,29 +47,29 @@ navigation:
 collections:
   datasets:
     output: true
-    permalink: /datasets/:path/:title
+    permalink: /datasets/:path/
     layout: dataset
   organizations:
     permalink: /organizations/:path/
   indicators:
     output: true
-    permalink: /dashboard/:path/:title
+    permalink: /dashboard/:path/
     layout: dashboard
 
 # jekyll_get allows for you to get and store a remote json file
-jekyll_get:
-  - data: jkan-demo-dataset
-    json: 'https://demo.jkan.io/datasets.json'
-    cache: true
-  - data: jkan-demo-data
-    json: 'https://demo.jkan.io/data.json'
-    cache: true
+#jekyll_get:
+#  - data: jkan-demo-dataset
+#    json: 'https://demo.jkan.io/datasets.json'
+#    cache: true
+#  - data: jkan-demo-data
+#    json: 'https://demo.jkan.io/data.json'
+#    cache: true
 
 # Collections (cont'd)
 defaults:
   - scope:
       path: ""
-      type: dataset
+      type: datasets
     values:
       layout: dataset
       category: Uncategorized
