@@ -52,7 +52,6 @@ collections:
   organizations:
     output: true
     permalink: /organizations/:path/
-    layout: organization
   indicators:
     output: true
     permalink: /dashboard/:path/
@@ -78,7 +77,7 @@ defaults:
       organization: N/A
   - scope:
       path: ""
-      type: organization
+      type: organizations
     values:
       layout: organization
   - scope:
